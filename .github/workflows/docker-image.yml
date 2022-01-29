@@ -24,7 +24,7 @@ jobs:
       - name: Check Out Repo
         uses: actions/checkout@v2
 
-      - name: Login to Docker Hub
+      - name: Login to Docker Hub 1
         run: |
           docker login --username "${DOCKER_USERNAME}" --password-stdin "${DOCKER_REGISTRY}" <<< "${DOCKER_TOKEN}"
         env:
@@ -55,7 +55,7 @@ jobs:
       - name: Check Out Repo
         uses: actions/checkout@v2
 
-      - name: Login to Docker Hub
+      - name: Login to Docker Hub 2
         run: |
           docker login --username "${DOCKER_USERNAME}" --password-stdin "${DOCKER_REGISTRY}" <<< "${DOCKER_TOKEN}"
         env:
