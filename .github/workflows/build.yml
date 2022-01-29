@@ -75,9 +75,9 @@ jobs:
     strategy:
       matrix:
         tag: [ firefox, chromium, google-chrome, ungoogled-chromium, microsoft-edge, brave, tor-browser, vncviewer, vlc, xfce ]
-        platform: [ linux/amd64, linux/arm64 ]
-        exclude:
-          - tag: google-chrome
+        platform: [ linux/amd64 ]
+        include:
+          - tag: chromium
             platform: linux/arm64
     env:
       TAG_NAME: ${{ matrix.tag }}
