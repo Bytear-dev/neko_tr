@@ -28,7 +28,7 @@ jobs:
         run: |
           docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_REGISTRY}"
         env:
-          DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
+          #DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
