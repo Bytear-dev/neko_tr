@@ -10,8 +10,8 @@ on:
   # Run this action periodically to keep browsers up-to-date
   # even if there is no activity in this repo.
   #
-  schedule:
-    - cron: "43 2 * * 1"
+  #schedule:
+  #  - cron: "43 2 * * 1"
 
 env:
   REGISTRY: ghcr.io
@@ -74,9 +74,14 @@ jobs:
     needs: [ build-base ]
     strategy:
       matrix:
-        tags: [ firefox, chromium, google-chrome, ungoogled-chromium, microsoft-edge, brave, tor-browser, vncviewer, vlc, xfce ]
+        tag: [ firefox, chromium, google-chrome, ungoogled-chromium, microsoft-edge, brave, tor-browser, vncviewer, vlc, xfce ]
+        platform: [ linux/amd64, linux/arm64 ]
+        exclude:
+          - tag: google-chrome
+            platform: linux/arm64
     env:
-      TAG_NAME: ${{ matrix.tags }}
+      TAG_NAME: ${{ matrix.tag }}
+      PLATFORM: ${{ matrix.platform }}
     steps:
       -
         name: Checkout
@@ -111,7 +116,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .docker/${{ env.TAG_NAME }}
-          platforms: ${{ env.PLATFORMS }}
+          platforms: ${{ env.PLATFORM }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
