@@ -27,7 +27,6 @@ jobs:
       
       - name: Re-login docker
         run: docker login -u "bytear" -p "${{ secrets.NEW_DOCKER_PASSWORD }}" docker.io
-	  
       - name: Build base
         run: |
           BUILD_IMAGE=${DOCKER_IMAGE} .docker/build ${DOCKER_TAG}
